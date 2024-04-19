@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "151091445433",
+    "project_id": "bynryapp",
+    "storage_bucket": "bynryapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151091445433:android:c99ca239365b2535976568",
+        "android_client_info": {
+          "package_name": "com.example.bynry_v1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACPGBlONeYO8rzgiraCx35LZgB5V9kBx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151091445433:android:28f2e476b237d93e976568",
+        "android_client_info": {
+          "package_name": "com.example.bynryv1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACPGBlONeYO8rzgiraCx35LZgB5V9kBx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
