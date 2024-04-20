@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bynryv1/screens/screens.dart';
@@ -21,7 +20,7 @@ class _WrapperState extends State<Wrapper> {
             print(snapshot.hasData);
             return HomeScreen();
           } else {
-            return LoginScreen();
+            return const LoginScreen();
           }
         },
       ),

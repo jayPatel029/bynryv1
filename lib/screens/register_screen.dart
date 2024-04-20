@@ -1,11 +1,10 @@
 import 'package:bynryv1/screens/screens.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import '../components/helper_widgets.dart';
+import 'package:bynryv1/components/components.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -17,41 +16,22 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  // final _formKey = GlobalKey<FormState>();
-  //
-  // String? _validateEmail(String? value) {
-  //   if (value == null) {
-  //     return 'Please enter your email id';
-  //   }
-  //   if (!EmailValidator.validate(value)) {
-  //     return 'Please enter a valid email address';
-  //   }
-  //   return null;
-  // }
-  //
-  // String? _validatePassword(String? value) {
-  //   if (value == null || value.isEmpty) {
-  //     return 'Please enter your password';
-  //   }
-  //   if (value.length < 6) {
-  //     return 'Password must be at least 6 characters long';
-  //   }
-  //   return null;
-  // }
-  //
-  // void _submitForm() {
-  //   if (_formKey.currentState!.validate()) {
-  //     register();
-  //   }
-  // }
 
   bool isLoading = false;
 
-  // register() async {
-  //   await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //       email: emailController.text, password: passwordController.text);
-  //   Get.offAll(Wrapper());
-  // }
+  loginWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   register() async {
     setState(() {
@@ -64,26 +44,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: passwordController.text,
       );
 
-      // Successful registration, navigate to the next screen
+
       Get.offAll(Wrapper());
     } on FirebaseAuthException catch (e) {
-      // Handle specific FirebaseAuth errors
+
       String errorMessage = _mapFirebaseAuthErrorCode(e.code);
       Get.snackbar("Authentication Error", errorMessage,
           colorText: Colors.white, backgroundColor: Colors.orange[700]);
       print('FirebaseAuthException: $errorMessage');
 
-      // Clear password field on weak password
+
       if (e.code == 'weak-password') {
         passwordController.clear();
       }
-      // Focus on the email field
+
     } on PlatformException catch (e) {
-      // Handle specific platform errors (e.g., network issues)
+
       Get.snackbar("Platform Error", e.message ?? "An unknown error occurred");
       print('PlatformException: ${e.message}');
     } catch (e) {
-      // Handle other unexpected errors
+
       Get.snackbar("Error", "An unexpected error occurred",
           colorText: Colors.white, backgroundColor: Colors.orange[700]);
       print('Unexpected Error: $e');
@@ -131,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Welcome!",
+                    "Welcome User!",
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                   SizedBox(
@@ -164,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Container(
-                      height: 450,
+                      height: 350,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -191,6 +171,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onTap: () {
                                 register();
                               },
+                              height: 40,
+                              width: 280,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text("OR"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            CustomButton(
+                              Bname: 'Continue with Google',
+                              onTap: () {
+                                loginWithGoogle();
+                              },
+                              height: 40,
+                              width: 280,
                             ),
                           ],
                         ),

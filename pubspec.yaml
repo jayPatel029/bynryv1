@@ -37,11 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   firebase_core: ^2.30.0
   firebase_auth: ^4.19.2
-  equatable: ^2.0.5
-  flutter_bloc: ^8.1.5
   flow_builder: ^0.1.0
   get: ^4.6.6
-  email_validator: ^2.1.17
+  ionicons: ^0.2.2
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:

@@ -1,14 +1,12 @@
 import 'package:bynryv1/firebase_options.dart';
-import 'package:bynryv1/repos/auth_repo/auth_repo.dart';
-import 'package:bynryv1/repos/auth_repo/repos.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'screens/screens.dart';
 
- Future<void> main() async {
 
+
+ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -25,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       GetMaterialApp(
+        debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -35,23 +34,8 @@ class MyApp extends StatelessWidget {
           // LoginScreen(),
           // HomeScreen(),
       // ForgotPass()
-        Wrapper(),
+        const Wrapper(),
     );
 
   }
 }
-
-//
-// class AppView extends StatelessWidget {
-//   const AppView({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: FlowBuilder(
-//         state: context.select((AppBloc bloc) => bloc.state.status),
-//         onGeneratePages: onGenerateViewPages,
-//       ),
-//     );
-//   }
-// }

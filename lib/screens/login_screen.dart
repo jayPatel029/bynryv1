@@ -1,22 +1,15 @@
 import 'package:bynryv1/screens/forgot_pass.dart';
 import 'package:bynryv1/screens/register_screen.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../components/helper_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
-  // static Page page() {
-  //   return const MaterialPage<void>(child: LoginScreen());
-  // }
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -39,7 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
         password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
-      // Handle specific FirebaseAuth errors
+
+
       String errorMessage = _mapFirebaseAuthErrorCode(e.code);
       Get.snackbar("Authentication Error", errorMessage,
           colorText: Colors.white, backgroundColor: Colors.orange[700]);
@@ -50,14 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
         passwordController.clear();
       }
 
-
-
     } on PlatformException catch (e) {
-      // Handle specific platform errors (e.g., network issues)
+
       Get.snackbar("Platform Error", e.message ?? "An unknown error occurred");
       print('PlatformException: ${e.message}');
     } catch (e) {
-      // Handle other unexpected errors
+
+
       Get.snackbar("Error", "An unexpected error occurred",
           colorText: Colors.white, backgroundColor: Colors.orange[700]);
       print('Unexpected Error: $e');
@@ -172,11 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         child: InkWell(
                                           onTap: () {
                                             Get.to(ForgotPass());
-                                            // Navigator.pushReplacement(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             ForgotPass()));
+
                                           },
                                           child: Text(
                                             "Forgot Password?",
@@ -195,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Bname: 'Login',
                                     onTap: () {
                                       login();
-                                    },
+                                    },height: 40, width: 280,
                                   ),
                                 ],
                               ),
@@ -219,11 +208,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(RegisterScreen());
-                                    // Navigator.pushReplacement(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) => RegisterScreen()));
+                                    Get.to(const RegisterScreen());
+
                                   },
                                   child: Text(
                                     "Sign Up",

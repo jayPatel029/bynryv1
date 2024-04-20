@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '151091445433',
     projectId: 'bynryapp',
     storageBucket: 'bynryapp.appspot.com',
+    androidClientId: '151091445433-itp8o8p0co1r0r01kilp57v4k7t9hc3c.apps.googleusercontent.com',
+    iosClientId: '151091445433-c3ajasjr3jcae84lt2obhuqoa448v7g3.apps.googleusercontent.com',
     iosBundleId: 'com.example.bynryv1',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '151091445433',
     projectId: 'bynryapp',
     storageBucket: 'bynryapp.appspot.com',
+    androidClientId: '151091445433-itp8o8p0co1r0r01kilp57v4k7t9hc3c.apps.googleusercontent.com',
+    iosClientId: '151091445433-c3ajasjr3jcae84lt2obhuqoa448v7g3.apps.googleusercontent.com',
     iosBundleId: 'com.example.bynryv1',
   );
 
@@ -85,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'bynryapp.appspot.com',
     measurementId: 'G-8JFC5R1YCH',
   );
+
 }

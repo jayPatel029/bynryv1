@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +11,11 @@ class ForgotPass extends StatefulWidget {
 }
 
 class _ForgotPassState extends State<ForgotPass> {
-
   TextEditingController emailController = TextEditingController();
 
   reset() async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+    await FirebaseAuth.instance
+        .sendPasswordResetEmail(email: emailController.text);
   }
 
   @override
@@ -70,7 +69,7 @@ class _ForgotPassState extends State<ForgotPass> {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Container(
-                      height: 450,
+                      height: 350,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -82,16 +81,30 @@ class _ForgotPassState extends State<ForgotPass> {
                             CustomTextfield(
                               hint: "Email ID",
                               controller: emailController,
-                                // validator: _validateEmail
+                              // validator: _validateEmail
                             ),
-
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 20,
+                            ),
                             CustomButton(
                               Bname: 'Send link',
                               onTap: () {
                                 reset();
                               },
+                              height: 40,
+                              width: 280,
                             ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(18.0),
+                              child: Text("You will receive a link on you registered Email id  click on that link and change your password",
+                              style: TextStyle(color: Colors.grey[700], fontSize: 16),
+
+                              ),
+                            )
                           ],
                         ),
                       ),
